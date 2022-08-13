@@ -1,0 +1,72 @@
+<div>
+  <button class="self-end warning mb-4" routerLink="..">Regresar</button>
+
+  <h2>Crear usuario</h2>
+
+  <form (ngSubmit)="onCreateUser()" [noValidate]="false">
+    <div class="input-field">
+      <label>
+        Tipo de documento
+
+        <select name="documentType" [(ngModel)]="user.documentType" required>
+          <option *ngFor="let type of documentTypes" value="{{ type.value }}">
+            {{ type.label }}
+          </option>
+        </select>
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Número de documento
+
+        <input
+          type="number"
+          name="documentNumber"
+          [(ngModel)]="user.documentNumber"
+          required
+        />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Nombre
+
+        <input name="firstName" [(ngModel)]="user.firstName" required />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Apellido
+
+        <input name="lastName" [(ngModel)]="user.lastName" required />
+      </label>
+    </div>
+
+    <div class="input-field radio">
+      <span>
+        Género
+
+        <div class="flex flex-row">
+          <label *ngFor="let gender of genderTypes">
+            <input
+              type="radio"
+              name="gender"
+              value="{{ gender.value }}"
+              [(ngModel)]="user.gender"
+              required
+            />
+
+            {{ gender.label }}
+          </label>
+        </div>
+      </span>
+    </div>
+
+    <div class="flex items-center justify-center py-4">
+      <button type="submit" class="success">Guardar</button>
+    </div>
+  </form>
+</div>

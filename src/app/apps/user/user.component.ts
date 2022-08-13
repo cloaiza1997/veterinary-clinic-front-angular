@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { getUrl } from 'src/app/utils/utils';
 import { HttpClient } from '@angular/common/http';
-import { NgToastService } from 'ng-angular-popup';
 import { ResponseType } from 'src/app/types/response';
+import { ToastController } from 'src/app/helpers/toast-controller';
 import { User } from 'src/app/models/user';
-import { USER_URL } from 'src/app/utils/constants';
+import { USER_ROUTES, USER_URL } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-user',
@@ -15,8 +15,9 @@ export class UserComponent implements OnInit {
   userList: User[] = [];
   skeleton: boolean = true;
   loading: boolean = false;
+  userCreateRoute = '/' + USER_ROUTES.CREATE;
 
-  constructor(private http: HttpClient, private toast: NgToastService) {}
+  constructor(private http: HttpClient, private toast: ToastController) {}
 
   ngOnInit() {
     this.http
@@ -27,26 +28,25 @@ export class UserComponent implements OnInit {
       });
   }
 
-  onDeleteUser(userId: number | null) {
+  onDeleteUser(userId: any) {
     this.loading = true;
 
     this.http
       .delete<ResponseType<any>>(getUrl(USER_URL, { userId }))
       .subscribe({
-        next: () => {
-          const index = this.userList.findIndex((user) => user.id === userId);
+        next: (response) => {
+          if (response.status) {
+            const index = this.userList.findIndex((user) => user.id === userId);
 
-          this.userList.splice(index, 1);
+            this.userList.splice(index, 1);
+          }
 
           this.loading = false;
         },
         error: ({ error }: { error: ResponseType<any> }) => {
           this.loading = false;
 
-          this.toast.error({
-            detail: 'Error al eliminar el usuario',
-            summary: error.message,
-          });
+          this.toast.showErrorResponse(error);
         },
       });
   }
