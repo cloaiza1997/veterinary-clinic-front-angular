@@ -1,0 +1,23 @@
+<main class="flex p-3 h-screen">
+  <nav class="mr-3 p-3 rounded-xl w-48">
+    <header
+      class="flex flex-col items-center justify-center text-center border-b-2 pb-3 mb-3"
+    >
+      <img src="/assets/logo.png" width="80" height="80" />
+
+      <h1 class="text-xl font-bold">Clínica Veterinaria</h1>
+    </header>
+
+    <ul>
+      <li *ngFor="let item of navItems">
+        <a routerLink="{{ item.route }}">{{ item.label }}</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="flex-1 rounded-xl overflow-hidden w-full">
+    <div class="overflow-auto p-3 h-full w-full">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</main>

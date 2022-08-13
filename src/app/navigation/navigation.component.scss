@@ -1,0 +1,24 @@
+@import "../../styles/variables.scss";
+
+ul {
+  li {
+    border-radius: 6px;
+
+    a {
+      display: block;
+      height: 100%;
+      padding: 10px;
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: $background-default;
+      font-weight: bold;
+    }
+
+    &.selected {
+      font-weight: bold;
+      background-color: $background-light;
+    }
+  }
+}
