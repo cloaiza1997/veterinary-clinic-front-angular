@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import "../../../styles/variables.scss";
 
 ul {
   li {
@@ -16,7 +16,7 @@ ul {
       font-weight: bold;
     }
 
-    &.selected {
+    &.active {
       font-weight: bold;
       background-color: $background-light;
     }

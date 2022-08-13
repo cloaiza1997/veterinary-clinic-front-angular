@@ -1,20 +1,17 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { NgToastModule } from 'ng-angular-popup';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavigationComponent } from './navigation/navigation.component';
+import { AppRoutingModule } from './app-routing.module';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { UserComponent } from './apps/user/user.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent, NavigationComponent, UserComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgToastModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

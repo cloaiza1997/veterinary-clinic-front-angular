@@ -1,0 +1,45 @@
+<div>
+  <h2>Usuarios</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tipo de documento</th>
+        <th>Número de documento</th>
+        <th>Usuario</th>
+        <th>Género</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody *ngIf="userList.length > 0; else emptyList">
+      <tr *ngFor="let user of userList">
+        <td class="text-center">{{ user.documentType }}</td>
+        <td class="text-right">{{ user.documentNumber }}</td>
+        <td>{{ user.firstName }} {{ user.lastName }}</td>
+        <td class="text-center">{{ user.gender }}</td>
+        <td class="text-center">{{ user.status ? "Activo" : "Inactivo" }}</td>
+        <td class="text-center">
+          <button class="info mx-2" [disabled]="loading">Editar</button>
+
+          <button
+            class="error mx-2"
+            (click)="onDeleteUser(user.id)"
+            [disabled]="loading"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+    <ng-template #emptyList>
+      <tbody>
+        <tr>
+          <td colspan="6" class="text-center">No hay usuarios registrados</td>
+        </tr>
+      </tbody>
+    </ng-template>
+  </table>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { USER_ROUTES } from '../../utils/constants';
 
 @Component({
   selector: 'app-navigation',
@@ -9,10 +10,10 @@ export class NavigationComponent implements OnInit {
   constructor() {}
 
   navItems = [
-    { label: 'Usuarios', route: '/' },
-    { label: 'Mascotas', route: '/' },
-    { label: 'Colaboradores', route: '/' },
-    { label: 'Historias clínicas', route: '/' },
+    { label: 'Usuarios', route: USER_ROUTES.HOME },
+    { label: 'Mascotas', route: '/_' },
+    { label: 'Colaboradores', route: '/_' },
+    { label: 'Historias clínicas', route: '/_' },
   ];
 
   ngOnInit(): void {}

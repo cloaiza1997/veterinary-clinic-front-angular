@@ -9,8 +9,8 @@
     </header>
 
     <ul>
-      <li *ngFor="let item of navItems">
-        <a routerLink="{{ item.route }}">{{ item.label }}</a>
+      <li *ngFor="let item of navItems" routerLinkActive="active">
+        <a [routerLink]="item.route">{{ item.label }}</a>
       </li>
     </ul>
   </nav>

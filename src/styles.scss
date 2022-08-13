@@ -20,6 +20,73 @@ section {
   background-color: $background-dark;
 }
 
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+
+  thead {
+    background-color: $background-light;
+
+    th {
+      padding: 10px;
+      text-align: center;
+    }
+  }
+
+  tbody {
+    background-color: $background-default;
+
+    tr:last-child td {
+      border: none;
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid;
+    }
+  }
+}
+
+button {
+  padding: 5px 10px;
+  border-radius: 8px;
+
+  &[disabled] {
+    background-color: #999999 !important;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.error {
+    background-color: $color-error;
+  }
+
+  &.info {
+    background-color: $color-info;
+  }
+
+  &.success {
+    background-color: $color-success;
+  }
+
+  &.warning {
+    background-color: $color-warning;
+  }
+}
+
 *::-webkit-scrollbar {
   width: 6px;
   height: 6px;
