@@ -4,10 +4,13 @@ import { DOCUMENT_TYPES, GENDER_TYPES } from 'src/app/utils/constants';
 import { HttpClient } from '@angular/common/http';
 import { ToastController } from 'src/app/helpers/toast-controller';
 import { User } from 'src/app/models/user';
-import { ResponseType } from 'src/app/types/response';
+import { ResponseType } from 'src/app/types/types';
 import { getApiUrl } from 'src/app/utils/utils';
 import { USER_ROUTES, USER_URL } from '../../constants/user.constants';
 
+/**
+ * Formulario de edición de usuarios
+ */
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',

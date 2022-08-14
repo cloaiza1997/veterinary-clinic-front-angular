@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { USER_ROUTES } from 'src/app/apps/user/constants/user.constants';
 
+/**
+ * Barra de navegación
+ */
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',

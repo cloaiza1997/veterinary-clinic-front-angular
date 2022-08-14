@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { getApiUrl, getUrl } from 'src/app/utils/utils';
 import { HttpClient } from '@angular/common/http';
-import { ResponseType } from 'src/app/types/response';
+import { ResponseType } from 'src/app/types/types';
 import { Router } from '@angular/router';
 import { ToastController } from 'src/app/helpers/toast-controller';
 import { User } from 'src/app/models/user';
 import { USER_ROUTES, USER_URL } from './constants/user.constants';
 
+/**
+ * Listado de gestión de usuarios
+ */
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',

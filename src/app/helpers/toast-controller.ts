@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
-import { ResponseType } from '../types/response';
+import { ResponseType } from '../types/types';
 
+/**
+ * Funciones para mostrar toast
+ */
 @Injectable()
 export class ToastController {
   constructor(private toast: NgToastService) {}
