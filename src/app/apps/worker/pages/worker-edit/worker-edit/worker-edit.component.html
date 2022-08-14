@@ -1,0 +1,70 @@
+<div>
+  <button class="self-end warning mb-4" backButton>Regresar</button>
+
+  <h2>Actualizar colaborador</h2>
+
+  <form (ngSubmit)="onUpdateWorker()" [noValidate]="false">
+    <div class="input-field">
+      <label>
+        Tipo de documento
+
+        <select name="documentType" [(ngModel)]="worker.documentType" required>
+          <option *ngFor="let type of documentTypes" value="{{ type.value }}">
+            {{ type.label }}
+          </option>
+        </select>
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Número de documento
+
+        <input
+          type="number"
+          name="documentNumber"
+          [(ngModel)]="worker.documentNumber"
+          required
+        />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Nombre
+
+        <input name="firstName" [(ngModel)]="worker.firstName" required />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Apellido
+
+        <input name="lastName" [(ngModel)]="worker.lastName" required />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Cargo
+
+        <input name="positionName" [(ngModel)]="worker.positionName" required />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Especialidad
+
+        <input name="speciality" [(ngModel)]="worker.speciality" required />
+      </label>
+    </div>
+
+    <div class="flex items-center justify-center py-4">
+      <button type="submit" class="success" [disabled]="loading">
+        Actualizar
+      </button>
+    </div>
+  </form>
+</div>

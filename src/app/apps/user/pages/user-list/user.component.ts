@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { ResponseType } from 'src/app/types/types';
 import { Router } from '@angular/router';
 import { ToastController } from 'src/app/helpers/toast-controller';
-import { User } from './models/user';
-import { USER_ROUTES, USER_URL } from './constants/user.constants';
+import { User } from '../../models/user';
+import { USER_ROUTES, USER_URL } from '../../constants/user.constants';
 
 /**
  * Listado de gestión de usuarios
@@ -52,6 +52,8 @@ export class UserComponent implements OnInit {
 
             this.userList.splice(index, 1);
             this.toast.showSuccess(response.message);
+          } else {
+            this.toast.showErrorResponse(response);
           }
 
           this.loading = false;

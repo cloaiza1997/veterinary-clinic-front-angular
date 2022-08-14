@@ -1,18 +1,20 @@
 import { Routes } from '@angular/router';
 import { WORKER_ROUTES } from '../constants/worker.constants';
-import { WorkerComponent } from '../worker.component';
+import { WorkerComponent } from '../pages/worker-list/worker.component';
+import { WorkerCreateComponent } from '../pages/worker-create/worker-create.component';
+import { WorkerEditComponent } from '../pages/worker-edit/worker-edit/worker-edit.component';
 
 export const workerRoutes: Routes = [
   {
     path: WORKER_ROUTES.HOME,
     component: WorkerComponent,
   },
-  // {
-  //   path: USER_ROUTES.CREATE,
-  //   component: UserCreateComponent,
-  // },
-  // {
-  //   path: USER_ROUTES.EDIT,
-  //   component: UserEditComponent,
-  // },
+  {
+    path: WORKER_ROUTES.CREATE,
+    component: WorkerCreateComponent,
+  },
+  {
+    path: WORKER_ROUTES.EDIT,
+    component: WorkerEditComponent,
+  },
 ];

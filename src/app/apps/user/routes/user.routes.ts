@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { UserCreateComponent } from '../componentes/user-create/user-create.component';
-import { UserEditComponent } from '../componentes/user-edit/user-edit.component';
 import { USER_ROUTES } from '../constants/user.constants';
-import { UserComponent } from '../user.component';
+import { UserComponent } from '../pages/user-list/user.component';
+import { UserCreateComponent } from '../pages/user-create/user-create.component';
+import { UserEditComponent } from '../pages/user-edit/user-edit.component';
 
 export const userRoutes: Routes = [
   {

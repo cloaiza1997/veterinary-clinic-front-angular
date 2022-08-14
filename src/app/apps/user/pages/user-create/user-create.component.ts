@@ -47,11 +47,11 @@ export class UserCreateComponent implements OnInit {
             this.toast.showErrorResponse(response);
           }
 
-          this.loading = true;
+          this.loading = false;
         },
         error: ({ error }: { error: ResponseType<any> }) => {
           this.toast.showErrorResponse(error);
-          this.loading = true;
+          this.loading = false;
         },
       });
   }

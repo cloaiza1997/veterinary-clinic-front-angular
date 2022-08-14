@@ -9,10 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { BackButtonDirective } from './directives/back-button.directive';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ToastController } from './helpers/toast-controller';
-import { UserComponent } from './apps/user/user.component';
-import { UserCreateComponent } from './apps/user/componentes/user-create/user-create.component';
-import { UserEditComponent } from './apps/user/componentes/user-edit/user-edit.component';
-import { WorkerComponent } from './apps/worker/worker.component';
+import { UserComponent } from './apps/user/pages/user-list/user.component';
+import { UserCreateComponent } from './apps/user/pages/user-create/user-create.component';
+import { UserEditComponent } from './apps/user/pages/user-edit/user-edit.component';
+import { WorkerComponent } from './apps/worker/pages/worker-list/worker.component';
+import { WorkerCreateComponent } from './apps/worker/pages/worker-create/worker-create.component';
+import { WorkerEditComponent } from './apps/worker/pages/worker-edit/worker-edit/worker-edit.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { WorkerComponent } from './apps/worker/worker.component';
     UserEditComponent,
     BackButtonDirective,
     WorkerComponent,
+    WorkerCreateComponent,
+    WorkerEditComponent,
   ],
   imports: [
     BrowserModule,
