@@ -1,16 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DOCUMENT_TYPES, GENDER_TYPES } from 'src/app/utils/constants';
+import { getApiUrl } from 'src/app/utils/utils';
+import { HttpClient } from '@angular/common/http';
+import { ResponseType } from 'src/app/types/response';
 import { Router } from '@angular/router';
 import { ToastController } from 'src/app/helpers/toast-controller';
 import { User } from 'src/app/models/user';
-import { ResponseType } from 'src/app/types/response';
-import {
-  DOCUMENT_TYPES,
-  GENDER_TYPES,
-  USER_ROUTES,
-  USER_URL,
-} from 'src/app/utils/constants';
-import { getUrl } from 'src/app/utils/utils';
+import { USER_ROUTES, USER_URL } from '../../constants/user.constants';
 
 @Component({
   selector: 'app-user-create',
@@ -37,7 +33,7 @@ export class UserCreateComponent implements OnInit {
   onCreateUser() {
     this.loading = true;
 
-    this.http.post<ResponseType<any>>(getUrl(USER_URL), this.user).subscribe({
+    this.http.post<ResponseType<any>>(getApiUrl(USER_URL), this.user).subscribe({
       next: (response) => {
         if (response.status) {
           this.toast.showSuccess(response.message);

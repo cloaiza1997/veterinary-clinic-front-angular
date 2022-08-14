@@ -1,9 +1,9 @@
 <div>
   <button class="self-end warning mb-4" backButton>Regresar</button>
 
-  <h2>Crear usuario</h2>
+  <h2>Editar usuario</h2>
 
-  <form (ngSubmit)="onCreateUser()" [noValidate]="false">
+  <form (ngSubmit)="onUpdateUser()" [noValidate]="false">
     <div class="input-field">
       <label>
         Tipo de documento
@@ -65,9 +65,20 @@
       </span>
     </div>
 
+    <div class="input-field">
+      <label>
+        Estado
+
+        <select name="status" [(ngModel)]="user.status" required>
+          <option value="{{ 1 }}">Activo</option>
+          <option value="{{ 0 }}">Inactivo</option>
+        </select>
+      </label>
+    </div>
+
     <div class="flex items-center justify-center py-4">
       <button type="submit" class="success" [disabled]="loading">
-        Guardar
+        Actualizar
       </button>
     </div>
   </form>

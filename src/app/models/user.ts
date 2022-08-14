@@ -9,21 +9,21 @@ export class User {
   status: number | undefined;
   gender: GenderType | undefined;
 
-  // constructor({
-  //   id = null,
-  //   firstName = '',
-  //   lastName = '',
-  //   documentType,
-  //   documentNumber = null,
-  //   status = 1,
-  //   gender,
-  // }: User | {} = {}) {
-  //   this.id = id;
-  //   this.firstName = firstName;
-  //   this.lastName = lastName;
-  //   this.documentType = documentType;
-  //   this.documentNumber = documentNumber;
-  //   this.status = status;
-  //   this.gender = gender;
-  // }
+  constructor({
+    id = null,
+    firstName = '',
+    lastName = '',
+    documentType,
+    documentNumber = null,
+    status = 1,
+    gender,
+  }: User | any = {}) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.documentType = documentType;
+    this.documentNumber = documentNumber;
+    this.status = status;
+    this.gender = gender;
+  }
 }

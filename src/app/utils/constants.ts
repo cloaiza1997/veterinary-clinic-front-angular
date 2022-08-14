@@ -2,13 +2,6 @@ import { DocType } from '../types/types';
 
 export const URL_API = 'http://192.168.0.44:8080/api/veterinary_clinic/';
 
-export const USER_ROUTES = {
-  HOME: 'users',
-  CREATE: 'users/create',
-};
-
-export const USER_URL = 'user/:userId?';
-
 export const DOCUMENT_TYPES: { value: DocType; label: string }[] = [
   {
     value: 'CC',

@@ -6,10 +6,12 @@ import { NgToastModule } from 'ng-angular-popup';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BackButtonDirective } from './directives/back-button.directive';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { ToastController } from './helpers/toast-controller';
 import { UserComponent } from './apps/user/user.component';
 import { UserCreateComponent } from './apps/user/componentes/user-create/user-create.component';
-import { ToastController } from './helpers/toast-controller';
+import { UserEditComponent } from './apps/user/componentes/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ToastController } from './helpers/toast-controller';
     NavigationComponent,
     UserComponent,
     UserCreateComponent,
+    UserEditComponent,
+    BackButtonDirective,
   ],
   imports: [
     BrowserModule,

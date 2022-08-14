@@ -7,9 +7,9 @@ export class ToastController {
   constructor(private toast: NgToastService) {}
 
   showErrorResponse(response: ResponseType<any>) {
-    const { message, formError } = response;
+    const { error, message, formError } = response;
 
-    if (message || formError.length > 0) {
+    if (error || message || formError.length > 0) {
       let summary = '';
       let duration = 5000;
 
@@ -20,7 +20,7 @@ export class ToastController {
         });
       }
 
-      this.toast.error({ detail: message, summary, duration });
+      this.toast.error({ detail: error || message, summary, duration });
     }
   }
 

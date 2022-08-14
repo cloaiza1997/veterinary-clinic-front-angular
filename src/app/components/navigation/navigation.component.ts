@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { USER_ROUTES } from '../../utils/constants';
+import { USER_ROUTES } from 'src/app/apps/user/constants/user.constants';
 
 @Component({
   selector: 'app-navigation',
