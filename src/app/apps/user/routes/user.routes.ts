@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 import { USER_ROUTES } from '../constants/user.constants';
-import { UserComponent } from '../pages/user-list/user.component';
+import { UserListComponent } from '../pages/user-list/user-list.component';
 import { UserCreateComponent } from '../pages/user-create/user-create.component';
 import { UserEditComponent } from '../pages/user-edit/user-edit.component';
 
 export const userRoutes: Routes = [
   {
     path: USER_ROUTES.HOME,
-    component: UserComponent,
+    component: UserListComponent,
   },
   {
     path: USER_ROUTES.CREATE,

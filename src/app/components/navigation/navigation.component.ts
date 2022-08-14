@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PET_ROUTES } from 'src/app/apps/pets/constants/pet.constants';
 import { USER_ROUTES } from 'src/app/apps/user/constants/user.constants';
 import { WORKER_ROUTES } from 'src/app/apps/worker/constants/worker.constants';
 
@@ -15,7 +16,7 @@ export class NavigationComponent implements OnInit {
 
   navItems = [
     { label: 'Usuarios', route: USER_ROUTES.HOME },
-    { label: 'Mascotas', route: '/_' },
+    { label: 'Mascotas', route: PET_ROUTES.HOME },
     { label: 'Colaboradores', route: WORKER_ROUTES.HOME },
     { label: 'Historias clínicas', route: '/_' },
   ];

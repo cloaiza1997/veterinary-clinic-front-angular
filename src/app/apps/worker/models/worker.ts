@@ -10,11 +10,11 @@ export class Worker {
   speciality: string | undefined;
 
   constructor({
-    id = null,
+    id,
     firstName,
     lastName,
     documentType,
-    documentNumber = null,
+    documentNumber,
     positionName,
     speciality,
   }: Worker | any = {}) {

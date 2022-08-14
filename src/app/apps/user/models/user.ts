@@ -10,12 +10,12 @@ export class User {
   gender: GenderType | undefined;
 
   constructor({
-    id = null,
-    firstName = '',
-    lastName = '',
+    id,
+    firstName,
+    lastName,
     documentType,
-    documentNumber = null,
-    status = 1,
+    documentNumber,
+    status,
     gender,
   }: User | any = {}) {
     this.id = id;

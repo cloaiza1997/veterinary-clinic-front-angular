@@ -1,0 +1,65 @@
+<div>
+  <button class="self-end warning mb-4" backButton>Regresar</button>
+
+  <h2>Editar mascota</h2>
+
+  <form (ngSubmit)="onUpdatePet()" [noValidate]="false">
+    <div class="input-field">
+      <label>
+        Nombre
+
+        <input name="name" [(ngModel)]="pet.name" required />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Raza
+
+        <input name="breed" [(ngModel)]="pet.breed" required />
+      </label>
+    </div>
+
+    <div class="input-field radio">
+      <span>
+        Género
+
+        <div class="flex flex-row">
+          <label *ngFor="let gender of genderTypes">
+            <input
+              type="radio"
+              name="gender"
+              value="{{ gender.value }}"
+              [(ngModel)]="pet.gender"
+              required
+            />
+
+            {{ gender.label }}
+          </label>
+        </div>
+      </span>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Usuario
+
+        <select name="documentType" [(ngModel)]="pet.userId" required>
+          <option *ngIf="userList.length === 0" disabled>
+            No hay usuarios registrados
+          </option>
+
+          <option *ngFor="let user of userList" value="{{ user.id }}">
+            {{ user.firstName }} {{ user.lastName }}
+          </option>
+        </select>
+      </label>
+    </div>
+
+    <div class="flex items-center justify-center py-4">
+      <button type="submit" class="success" [disabled]="loading">
+        Actualizar
+      </button>
+    </div>
+  </form>
+</div>
