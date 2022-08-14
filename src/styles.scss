@@ -4,8 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./styles/variables.scss";
 @import "./styles/form.scss";
+@import "./styles/toast.scss";
+@import "./styles/variables.scss";
 
 * {
   color: #ffffff;

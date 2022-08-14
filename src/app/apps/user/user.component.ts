@@ -39,6 +39,7 @@ export class UserComponent implements OnInit {
             const index = this.userList.findIndex((user) => user.id === userId);
 
             this.userList.splice(index, 1);
+            this.toast.showSuccess(response.message);
           }
 
           this.loading = false;

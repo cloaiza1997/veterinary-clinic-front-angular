@@ -20,6 +20,7 @@ import { getUrl } from 'src/app/utils/utils';
 export class UserCreateComponent implements OnInit {
   documentTypes = DOCUMENT_TYPES;
   genderTypes = GENDER_TYPES;
+  loading = false;
 
   user: User;
 
@@ -33,8 +34,9 @@ export class UserCreateComponent implements OnInit {
 
   ngOnInit() {}
 
-  // TODO - MENSAJES DE VALIDACIÓN DE FORMULARIOS
   onCreateUser() {
+    this.loading = true;
+
     this.http.post<ResponseType<any>>(getUrl(USER_URL), this.user).subscribe({
       next: (response) => {
         if (response.status) {
@@ -43,9 +45,12 @@ export class UserCreateComponent implements OnInit {
         } else {
           this.toast.showErrorResponse(response);
         }
+
+        this.loading = true;
       },
       error: ({ error }: { error: ResponseType<any> }) => {
         this.toast.showErrorResponse(error);
+        this.loading = true;
       },
     });
   }
