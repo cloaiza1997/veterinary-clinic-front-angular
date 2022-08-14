@@ -1,0 +1,61 @@
+<div>
+  <h2>Colaboadores</h2>
+
+  <div class="flex flex-col mb-4">
+    <button class="self-end success" [routerLink]="workerCreateRoute">
+      Crear colaborador
+    </button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tipo de documento</th>
+        <th>Número de documento</th>
+        <th>Usuario</th>
+        <th>Cargo</th>
+        <th>Especialidad</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody *ngIf="workerList.length > 0; else emptyList">
+      <tr *ngFor="let worker of workerList">
+        <td class="text-center">{{ worker.documentType }}</td>
+        <td class="text-right">{{ worker.documentNumber }}</td>
+        <td>{{ worker.firstName }} {{ worker.lastName }}</td>
+        <td class="text-center">{{ worker.positionName }}</td>
+        <td class="text-center">
+          {{ worker.speciality }}
+        </td>
+        <td class="text-center">
+          <button
+            class="info mx-2"
+            [routerLink]="getUrlEditWorker(worker.id)"
+            [disabled]="loading"
+          >
+            Editar
+          </button>
+
+          <button
+            class="error mx-2"
+            (click)="onDeleteWorker(worker.id)"
+            [disabled]="loading"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+    <ng-template #emptyList>
+      <tbody>
+        <tr>
+          <td colspan="6" class="text-center">
+            No hay colaboradores registrados
+          </td>
+        </tr>
+      </tbody>
+    </ng-template>
+  </table>
+</div>

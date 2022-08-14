@@ -1,11 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { DOCUMENT_TYPES, GENDER_TYPES } from 'src/app/utils/constants';
-import { HttpClient } from '@angular/common/http';
-import { ToastController } from 'src/app/helpers/toast-controller';
-import { User } from 'src/app/models/user';
-import { ResponseType } from 'src/app/types/types';
 import { getApiUrl } from 'src/app/utils/utils';
+import { HttpClient } from '@angular/common/http';
+import { ResponseType } from 'src/app/types/types';
+import { ToastController } from 'src/app/helpers/toast-controller';
+import { User } from '../../models/user';
 import { USER_ROUTES, USER_URL } from '../../constants/user.constants';
 
 /**

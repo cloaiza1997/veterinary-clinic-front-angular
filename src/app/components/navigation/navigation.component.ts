@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { USER_ROUTES } from 'src/app/apps/user/constants/user.constants';
+import { WORKER_ROUTES } from 'src/app/apps/worker/constants/worker.constants';
 
 /**
  * Barra de navegación
@@ -15,7 +16,7 @@ export class NavigationComponent implements OnInit {
   navItems = [
     { label: 'Usuarios', route: USER_ROUTES.HOME },
     { label: 'Mascotas', route: '/_' },
-    { label: 'Colaboradores', route: '/_' },
+    { label: 'Colaboradores', route: WORKER_ROUTES.HOME },
     { label: 'Historias clínicas', route: '/_' },
   ];
 

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ResponseType } from 'src/app/types/types';
 import { Router } from '@angular/router';
 import { ToastController } from 'src/app/helpers/toast-controller';
-import { User } from 'src/app/models/user';
+import { User } from '../../models/user';
 import { USER_ROUTES, USER_URL } from '../../constants/user.constants';
 
 /**

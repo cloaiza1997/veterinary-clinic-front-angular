@@ -1,4 +1,4 @@
-import { DocType, GenderType } from '../types/types';
+import { DocType, GenderType } from '../../../types/types';
 
 export class User {
   id: number | null | undefined;
