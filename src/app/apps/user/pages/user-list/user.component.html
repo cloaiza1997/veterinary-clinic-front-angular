@@ -7,7 +7,7 @@
     </button>
   </div>
 
-  <table>
+  <table *ngIf="!skeleton; else skeletonLoader">
     <thead>
       <tr>
         <th>Tipo de documento</th>
@@ -54,4 +54,8 @@
       </tbody>
     </ng-template>
   </table>
+
+  <ng-template #skeletonLoader>
+    <app-loader [size]="50"></app-loader>
+  </ng-template>
 </div>

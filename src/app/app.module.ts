@@ -15,6 +15,7 @@ import { UserEditComponent } from './apps/user/pages/user-edit/user-edit.compone
 import { WorkerComponent } from './apps/worker/pages/worker-list/worker.component';
 import { WorkerCreateComponent } from './apps/worker/pages/worker-create/worker-create.component';
 import { WorkerEditComponent } from './apps/worker/pages/worker-edit/worker-edit/worker-edit.component';
+import { LoaderComponent } from './apps/componentes/loader/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { WorkerEditComponent } from './apps/worker/pages/worker-edit/worker-edit
     WorkerComponent,
     WorkerCreateComponent,
     WorkerEditComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
