@@ -24,11 +24,19 @@
         <td>{{ pet.breed }}</td>
         <td class="text-center">{{ pet.gender }}</td>
         <td>
-          <a [routerLink]="getUrlEditUser(pet.user?.id)">
-            {{ pet.user?.firstName }} {{ pet.user?.lastName }}
+          <a [routerLink]="getUrlEditUser(pet.userId)">
+            {{ pet.userName }}
           </a>
         </td>
         <td class="text-center">
+          <button
+            class="warning mx-2"
+            [routerLink]="getUrlEditClinicHistory(pet.clinicHistoryId)"
+            [disabled]="loading"
+          >
+            Historia clínica
+          </button>
+
           <button
             class="info mx-2"
             [routerLink]="getUrlEditPet(pet.id)"

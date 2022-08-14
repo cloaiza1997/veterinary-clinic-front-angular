@@ -5,3 +5,4 @@ export const PET_ROUTES = {
 };
 
 export const PET_URL = 'pet/:petId?';
+export const PET_LIST_URL = 'pet/clinicHistory';

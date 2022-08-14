@@ -19,6 +19,7 @@ import { WorkerCreateComponent } from './apps/worker/pages/worker-create/worker-
 import { WorkerEditComponent } from './apps/worker/pages/worker-edit/worker-edit/worker-edit.component';
 import { PetCreateComponent } from './apps/pets/pages/pet-create/pet-create.component';
 import { PetEditComponent } from './apps/pets/pages/pet-edit/pet-edit.component';
+import { ClinicHistoryDetailComponent } from './apps/clinic-history/pages/clinic-history-detail/clinic-history-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { PetEditComponent } from './apps/pets/pages/pet-edit/pet-edit.component'
     PetListComponent,
     PetCreateComponent,
     PetEditComponent,
+    ClinicHistoryDetailComponent,
   ],
   imports: [
     BrowserModule,

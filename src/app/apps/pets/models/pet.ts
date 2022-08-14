@@ -8,13 +8,26 @@ export class Pet {
   gender: GenderType | undefined;
   userId: number | null | undefined;
   user: User | null | undefined;
+  userName: string | null | undefined;
+  clinicHistoryId: number | null | undefined;
 
-  constructor({ id, name, breed, gender, userId, user }: Pet | any = {}) {
+  constructor({
+    id,
+    name,
+    breed,
+    gender,
+    userId,
+    userName,
+    user,
+    clinicHistoryId,
+  }: Pet | any = {}) {
     this.id = id;
     this.name = name;
     this.breed = breed;
     this.gender = gender;
     this.userId = userId;
+    this.userName = userName;
     this.user = user;
+    this.clinicHistoryId = clinicHistoryId;
   }
 }

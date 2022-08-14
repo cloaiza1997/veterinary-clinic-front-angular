@@ -18,7 +18,6 @@ export class NavigationComponent implements OnInit {
     { label: 'Usuarios', route: USER_ROUTES.HOME },
     { label: 'Mascotas', route: PET_ROUTES.HOME },
     { label: 'Colaboradores', route: WORKER_ROUTES.HOME },
-    { label: 'Historias clínicas', route: '/_' },
   ];
 
   ngOnInit(): void {}

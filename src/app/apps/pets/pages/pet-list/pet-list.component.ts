@@ -1,8 +1,13 @@
+import {
+  PET_LIST_URL,
+  PET_ROUTES,
+  PET_URL,
+} from '../../constants/pet.constants';
+import { CLINIC_HISTORY_ROUTES } from 'src/app/apps/clinic-history/constants/clinic-history.constants';
 import { Component, OnInit } from '@angular/core';
 import { getApiUrl, getUrl } from 'src/app/utils/utils';
 import { HttpClient } from '@angular/common/http';
 import { Pet } from '../../models/pet';
-import { PET_ROUTES, PET_URL } from '../../constants/pet.constants';
 import { ResponseType } from 'src/app/types/types';
 import { ToastController } from 'src/app/helpers/toast-controller';
 import { USER_ROUTES } from 'src/app/apps/user/constants/user.constants';
@@ -21,8 +26,12 @@ export class PetListComponent implements OnInit {
   constructor(private http: HttpClient, private toast: ToastController) {}
 
   ngOnInit() {
+    this.getPetList();
+  }
+
+  getPetList() {
     this.http
-      .get<ResponseType<{ pets: Pet[] }>>(getApiUrl(PET_URL))
+      .get<ResponseType<{ pets: Pet[] }>>(getApiUrl(PET_LIST_URL))
       .subscribe((response) => {
         this.petList = response.body?.pets || [];
         this.skeleton = false;
@@ -31,6 +40,10 @@ export class PetListComponent implements OnInit {
 
   getUrlEditPet(petId: any) {
     return '/' + getUrl(PET_ROUTES.EDIT, { petId });
+  }
+
+  getUrlEditClinicHistory(clinicHistoryId: any) {
+    return '/' + getUrl(CLINIC_HISTORY_ROUTES.DETAIL, { clinicHistoryId });
   }
 
   getUrlEditUser(userId: any) {
