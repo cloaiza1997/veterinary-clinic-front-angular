@@ -1,1 +1,71 @@
-<p>clinic-history-detail works!</p>
+<div>
+  <button class="self-end warning mb-4" backButton>Regresar</button>
+
+  <h2>Historia clínica</h2>
+
+  <div class="flex flex-col mb-4">
+    <button class="self-end success" [routerLink]="clinicHistoryDetailCreate">
+      Crear detalle
+    </button>
+  </div>
+
+  <table *ngIf="!skeleton; else skeletonLoader">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Alimentación</th>
+        <th>Hábitat</th>
+        <th>Ritmo cardiaco</th>
+        <th>Temperatura</th>
+        <th>Peso</th>
+        <th>Colaborador</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody *ngIf="clinicHistoryDetailList.length > 0; else emptyList">
+      <tr *ngFor="let detail of clinicHistoryDetailList">
+        <td>{{ detail.dateTime }}</td>
+        <td>{{ detail.feeding }}</td>
+        <td>{{ detail.habitat }}</td>
+        <td>{{ detail.heartRate }}</td>
+        <td>{{ detail.temperature }}</td>
+        <td>{{ detail.weight }}</td>
+        <td>
+          <a [routerLink]="getUrlEditWorker(detail.workerId)">
+            {{ detail.worker?.firstName }} {{ detail.worker?.lastName }}
+          </a>
+        </td>
+        <td class="text-center">
+          <button
+            class="info mx-2"
+            [routerLink]="getUrlEditDetail(detail.id)"
+            [disabled]="loading"
+          >
+            Editar
+          </button>
+
+          <button
+            class="error mx-2"
+            (click)="onDeleteDetail(detail.id)"
+            [disabled]="loading"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+    <ng-template #emptyList>
+      <tbody>
+        <tr>
+          <td colspan="6" class="text-center">No hay detalles registrados</td>
+        </tr>
+      </tbody>
+    </ng-template>
+  </table>
+
+  <ng-template #skeletonLoader>
+    <app-loader [size]="50"></app-loader>
+  </ng-template>
+</div>

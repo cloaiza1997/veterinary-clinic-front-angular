@@ -11,6 +11,9 @@ import { ToastController } from 'src/app/helpers/toast-controller';
 import { User } from 'src/app/apps/user/models/user';
 import { USER_URL } from 'src/app/apps/user/constants/user.constants';
 
+/**
+ * Formulario de edición de una mascota
+ */
 @Component({
   selector: 'app-pet-edit',
   templateUrl: './pet-edit.component.html',
@@ -18,6 +21,7 @@ import { USER_URL } from 'src/app/apps/user/constants/user.constants';
 })
 export class PetEditComponent implements OnInit {
   genderTypes = GENDER_PET_TYPES;
+
   loading = false;
   skeleton = true;
 
@@ -38,9 +42,14 @@ export class PetEditComponent implements OnInit {
   }
 
   getData() {
+    this.skeleton = true;
+
     const petId = this.route.snapshot.params['petId'];
 
-    forkJoin([this.getPet(petId), this.getUserList()]).subscribe({
+    forkJoin([
+      this.http.get<ResponseType<{ pet: Pet }>>(getApiUrl(PET_URL, { petId })),
+      this.http.get<ResponseType<{ users: User[] }>>(getApiUrl(USER_URL)),
+    ]).subscribe({
       next: ([responsePet, responseUser]) => {
         this.pet = new Pet(responsePet.body?.pet);
         this.userList =
@@ -50,19 +59,11 @@ export class PetEditComponent implements OnInit {
       },
       error: ({ error }) => {
         this.toast.showErrorResponse(error);
+        this.skeleton = false;
+
         this.router.navigateByUrl(PET_ROUTES.HOME);
       },
     });
-  }
-
-  getUserList() {
-    return this.http.get<ResponseType<{ users: User[] }>>(getApiUrl(USER_URL));
-  }
-
-  getPet(petId: any) {
-    return this.http.get<ResponseType<{ pet: Pet }>>(
-      getApiUrl(PET_URL, { petId })
-    );
   }
 
   onUpdatePet() {
@@ -75,14 +76,10 @@ export class PetEditComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          if (response.status) {
-            this.toast.showSuccess(response.message);
-            this.router.navigateByUrl(PET_ROUTES.HOME);
-          } else {
-            this.toast.showErrorResponse(response);
-          }
-
+          this.toast.showSuccess(response.message);
           this.loading = false;
+
+          this.router.navigateByUrl(PET_ROUTES.HOME);
         },
         error: ({ error }: { error: ResponseType<any> }) => {
           this.toast.showErrorResponse(error);

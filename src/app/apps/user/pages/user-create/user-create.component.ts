@@ -19,6 +19,7 @@ import { USER_ROUTES, USER_URL } from '../../constants/user.constants';
 export class UserCreateComponent implements OnInit {
   documentTypes = DOCUMENT_TYPES;
   genderTypes = GENDER_TYPES;
+
   loading = false;
 
   user: User;
@@ -40,14 +41,10 @@ export class UserCreateComponent implements OnInit {
       .post<ResponseType<any>>(getApiUrl(USER_URL), this.user)
       .subscribe({
         next: (response) => {
-          if (response.status) {
-            this.toast.showSuccess(response.message);
-            this.router.navigateByUrl(USER_ROUTES.HOME);
-          } else {
-            this.toast.showErrorResponse(response);
-          }
-
+          this.toast.showSuccess(response.message);
           this.loading = false;
+
+          this.router.navigateByUrl(USER_ROUTES.HOME);
         },
         error: ({ error }: { error: ResponseType<any> }) => {
           this.toast.showErrorResponse(error);

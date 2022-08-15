@@ -9,7 +9,12 @@ import { Router } from '@angular/router';
 import { ToastController } from 'src/app/helpers/toast-controller';
 import { User } from 'src/app/apps/user/models/user';
 import { USER_URL } from 'src/app/apps/user/constants/user.constants';
+import { CLINIC_HISTORY_URL } from 'src/app/apps/clinic-history/constants/clinic-history.constants';
+import { ClinicHistory } from 'src/app/apps/clinic-history/models/clinic-history';
 
+/**
+ * Formulario de creación de mascotas
+ */
 @Component({
   selector: 'app-pet-create',
   templateUrl: './pet-create.component.html',
@@ -17,6 +22,7 @@ import { USER_URL } from 'src/app/apps/user/constants/user.constants';
 })
 export class PetCreateComponent implements OnInit {
   genderTypes = GENDER_PET_TYPES;
+
   skeleton = true;
   loading = false;
 
@@ -47,24 +53,46 @@ export class PetCreateComponent implements OnInit {
       });
   }
 
+  /**
+   * Crea una nueva mascota junto con su historia clínica
+   */
   onCreatePet() {
     this.loading = true;
 
-    this.http.post<ResponseType<any>>(getApiUrl(PET_URL), this.pet).subscribe({
-      next: (response) => {
-        if (response.status) {
-          this.toast.showSuccess(response.message);
-          this.router.navigateByUrl(PET_ROUTES.HOME);
-        } else {
-          this.toast.showErrorResponse(response);
-        }
+    this.http
+      .post<ResponseType<{ pet: Pet }>>(getApiUrl(PET_URL), this.pet)
+      .subscribe({
+        next: (response) => {
+          this.onCreateClinicHistory(response.body?.pet.id, response.message);
+          this.loading = false;
+        },
+        error: ({ error }: { error: ResponseType<any> }) => {
+          this.toast.showErrorResponse(error);
+          this.loading = false;
+        },
+      });
+  }
 
-        this.loading = false;
-      },
-      error: ({ error }: { error: ResponseType<any> }) => {
-        this.toast.showErrorResponse(error);
-        this.loading = false;
-      },
+  onCreateClinicHistory(petId: any, message: string) {
+    this.loading = true;
+
+    const clinicHistory = new ClinicHistory({
+      petId,
     });
+
+    this.http
+      .post<ResponseType<any>>(getApiUrl(CLINIC_HISTORY_URL), clinicHistory)
+      .subscribe({
+        next: (response) => {
+          this.toast.showSuccess(`${message} - ${response.message}`);
+          this.loading = false;
+
+          this.router.navigateByUrl(PET_ROUTES.HOME);
+        },
+        error: ({ error }: { error: ResponseType<any> }) => {
+          this.toast.showErrorResponse(error);
+          this.loading = false;
+        },
+      });
   }
 }

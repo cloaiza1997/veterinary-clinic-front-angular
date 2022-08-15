@@ -19,6 +19,8 @@ import { USER_ROUTES, USER_URL } from '../../constants/user.constants';
 export class UserEditComponent implements OnInit {
   documentTypes = DOCUMENT_TYPES;
   genderTypes = GENDER_TYPES;
+
+  skeleton = false;
   loading = false;
 
   user: User;
@@ -39,19 +41,19 @@ export class UserEditComponent implements OnInit {
   }
 
   getUser(userId: any) {
+    this.skeleton = true;
+
     this.http
       .get<ResponseType<{ user: User }>>(getApiUrl(USER_URL, { userId }))
       .subscribe({
         next: (response) => {
-          if (response.status) {
-            this.user = new User(response.body?.user);
-          } else {
-            this.toast.showErrorResponse(response);
-            this.router.navigateByUrl(USER_ROUTES.HOME);
-          }
+          this.user = new User(response.body?.user);
+          this.skeleton = false;
         },
         error: ({ error }) => {
           this.toast.showErrorResponse(error);
+          this.skeleton = false;
+
           this.router.navigateByUrl(USER_ROUTES.HOME);
         },
       });

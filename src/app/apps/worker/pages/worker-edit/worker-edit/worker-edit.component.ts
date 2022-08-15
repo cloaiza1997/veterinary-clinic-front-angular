@@ -8,6 +8,9 @@ import { ToastController } from 'src/app/helpers/toast-controller';
 import { Worker } from '../../../models/worker';
 import { WORKER_ROUTES, WORKER_URL } from '../../../constants/worker.constants';
 
+/**
+ * Formulario de edición de colaborador
+ */
 @Component({
   selector: 'app-worker-edit',
   templateUrl: './worker-edit.component.html',
@@ -15,6 +18,7 @@ import { WORKER_ROUTES, WORKER_URL } from '../../../constants/worker.constants';
 })
 export class WorkerEditComponent implements OnInit {
   documentTypes = DOCUMENT_TYPES;
+
   loading = false;
 
   worker: Worker;

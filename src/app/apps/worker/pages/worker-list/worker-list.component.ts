@@ -15,9 +15,11 @@ import { WORKER_ROUTES, WORKER_URL } from '../../constants/worker.constants';
   styleUrls: ['./worker-list.component.scss'],
 })
 export class WorkerListComponent implements OnInit {
-  workerList: Worker[] = [];
   skeleton: boolean = true;
   loading: boolean = false;
+
+  workerList: Worker[] = [];
+
   workerCreateRoute = '/' + WORKER_ROUTES.CREATE;
 
   constructor(private http: HttpClient, private toast: ToastController) {}
@@ -31,11 +33,19 @@ export class WorkerListComponent implements OnInit {
   }
 
   getWorkerList() {
+    this.skeleton = true;
+
     this.http
       .get<ResponseType<{ workers: Worker[] }>>(getApiUrl(WORKER_URL))
-      .subscribe((response) => {
-        this.workerList = response.body?.workers || [];
-        this.skeleton = false;
+      .subscribe({
+        next: (response) => {
+          this.workerList = response.body?.workers || [];
+          this.skeleton = false;
+        },
+        error: ({ error }) => {
+          this.toast.showErrorResponse(error);
+          this.skeleton = false;
+        },
       });
   }
 
@@ -46,23 +56,18 @@ export class WorkerListComponent implements OnInit {
       .delete<ResponseType<any>>(getApiUrl(WORKER_URL, { workerId }))
       .subscribe({
         next: (response) => {
-          if (response.status) {
-            const index = this.workerList.findIndex(
-              (worker) => worker.id === workerId
-            );
+          const index = this.workerList.findIndex(
+            (worker) => worker.id === workerId
+          );
 
-            this.workerList.splice(index, 1);
-            this.toast.showSuccess(response.message);
-          } else {
-            this.toast.showErrorResponse(response);
-          }
+          this.workerList.splice(index, 1);
+          this.toast.showSuccess(response.message);
 
           this.loading = false;
         },
         error: ({ error }: { error: ResponseType<any> }) => {
-          this.loading = false;
-
           this.toast.showErrorResponse(error);
+          this.loading = false;
         },
       });
   }

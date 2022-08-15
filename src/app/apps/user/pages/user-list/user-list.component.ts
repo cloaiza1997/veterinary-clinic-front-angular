@@ -15,9 +15,11 @@ import { USER_ROUTES, USER_URL } from '../../constants/user.constants';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  userList: User[] = [];
   skeleton: boolean = true;
   loading: boolean = false;
+
+  userList: User[] = [];
+
   userCreateRoute = '/' + USER_ROUTES.CREATE;
 
   constructor(private http: HttpClient, private toast: ToastController) {}
@@ -27,11 +29,19 @@ export class UserListComponent implements OnInit {
   }
 
   getUserList() {
+    this.skeleton = true;
+
     this.http
       .get<ResponseType<{ users: User[] }>>(getApiUrl(USER_URL))
-      .subscribe((response) => {
-        this.userList = response.body?.users || [];
-        this.skeleton = false;
+      .subscribe({
+        next: (response) => {
+          this.userList = response.body?.users || [];
+          this.skeleton = false;
+        },
+        error: ({ error }) => {
+          this.toast.showErrorResponse(error);
+          this.skeleton = false;
+        },
       });
   }
 
@@ -46,21 +56,16 @@ export class UserListComponent implements OnInit {
       .delete<ResponseType<any>>(getApiUrl(USER_URL, { userId }))
       .subscribe({
         next: (response) => {
-          if (response.status) {
-            const index = this.userList.findIndex((user) => user.id === userId);
+          const index = this.userList.findIndex((user) => user.id === userId);
 
-            this.userList.splice(index, 1);
-            this.toast.showSuccess(response.message);
-          } else {
-            this.toast.showErrorResponse(response);
-          }
+          this.userList.splice(index, 1);
+          this.toast.showSuccess(response.message);
 
           this.loading = false;
         },
         error: ({ error }: { error: ResponseType<any> }) => {
-          this.loading = false;
-
           this.toast.showErrorResponse(error);
+          this.loading = false;
         },
       });
   }
