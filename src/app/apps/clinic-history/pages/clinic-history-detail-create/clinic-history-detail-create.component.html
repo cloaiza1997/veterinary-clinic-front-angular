@@ -1,0 +1,123 @@
+<div>
+  <button class="self-end warning mb-4" backButton>Regresar</button>
+
+  <h2>Crear detalle</h2>
+
+  <form (ngSubmit)="onCreateDetail()" [noValidate]="false">
+    <div class="input-field">
+      <label>
+        Temperatura
+
+        <input
+          type="number"
+          name="temperature"
+          [(ngModel)]="clinicHistoryDetail.temperature"
+          autofocus
+          required
+        />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Peso
+
+        <input
+          type="number"
+          name="weight"
+          [(ngModel)]="clinicHistoryDetail.weight"
+          required
+        />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Frecuencia cardiaca
+
+        <input
+          type="number"
+          name="heartRate"
+          [(ngModel)]="clinicHistoryDetail.heartRate"
+          required
+        />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Frecuencia respiratoria
+
+        <input
+          type="number"
+          name="breathingRate"
+          [(ngModel)]="clinicHistoryDetail.breathingRate"
+          required
+        />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Alimentación
+
+        <input
+          name="feeding"
+          [(ngModel)]="clinicHistoryDetail.feeding"
+          required
+        />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Hábitat
+
+        <input
+          name="habitat"
+          [(ngModel)]="clinicHistoryDetail.habitat"
+          required
+        />
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Colaborador
+
+        <select
+          name="documentType"
+          [(ngModel)]="clinicHistoryDetail.workerId"
+          required
+        >
+          <option *ngIf="workerList.length === 0" disabled>
+            No hay colaboradores registrados
+          </option>
+
+          <option *ngFor="let worker of workerList" value="{{ worker.id }}">
+            {{ worker.firstName }} {{ worker.lastName }}
+          </option>
+        </select>
+      </label>
+    </div>
+
+    <div class="input-field">
+      <label>
+        Observaciones
+
+        <textarea
+          name="observations"
+          [(ngModel)]="clinicHistoryDetail.observations"
+          rows="4"
+        >
+        </textarea>
+      </label>
+    </div>
+
+    <div class="flex items-center justify-center py-4">
+      <button type="submit" class="success" [disabled]="loading">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

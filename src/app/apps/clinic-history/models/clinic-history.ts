@@ -4,12 +4,12 @@ export class ClinicHistory {
   id: number | null | undefined;
   petId: number | null | undefined;
   pet: Pet | null | undefined;
-  cratedAt: string | null | undefined;
+  createdAt: string | null | undefined;
 
-  constructor({ id, petId, pet, cratedAt }: ClinicHistory | any = {}) {
+  constructor({ id, petId, pet, createdAt }: ClinicHistory | any = {}) {
     this.id = id;
     this.petId = petId;
     this.pet = pet;
-    this.cratedAt = cratedAt;
+    this.createdAt = createdAt;
   }
 }

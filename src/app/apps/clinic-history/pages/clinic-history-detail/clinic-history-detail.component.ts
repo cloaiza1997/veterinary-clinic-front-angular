@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { getApiUrl, getUrl } from 'src/app/utils/utils';
 import { HttpClient } from '@angular/common/http';
+import { MomentDate } from 'src/app/utils/date';
 import { PET_ROUTES } from 'src/app/apps/pets/constants/pet.constants';
 import { ResponseType } from 'src/app/types/types';
 import { ToastController } from 'src/app/helpers/toast-controller';
@@ -24,14 +25,12 @@ import { WORKER_ROUTES } from 'src/app/apps/worker/constants/worker.constants';
   templateUrl: './clinic-history-detail.component.html',
   styleUrls: ['./clinic-history-detail.component.scss'],
 })
-export class ClinicHistoryDetailComponent implements OnInit {
+export class ClinicHistoryDetailComponent extends MomentDate implements OnInit {
   loading = false;
   skeleton = true;
 
   clinicHistory: ClinicHistory;
   clinicHistoryDetailList: ClinicHistoryDetail[] = [];
-
-  clinicHistoryDetailCreate = '/' + CLINIC_HISTORY_ROUTES.DETAIL_CREATE;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,6 +38,7 @@ export class ClinicHistoryDetailComponent implements OnInit {
     private toast: ToastController,
     private router: Router
   ) {
+    super();
     this.clinicHistory = new ClinicHistory();
   }
 
@@ -77,8 +77,18 @@ export class ClinicHistoryDetailComponent implements OnInit {
     });
   }
 
+  getUrlEditPet(petId: any) {
+    return '/' + getUrl(PET_ROUTES.EDIT, { petId });
+  }
+
   getUrlEditWorker(workerId: any) {
     return '/' + getUrl(WORKER_ROUTES.EDIT, { workerId });
+  }
+
+  getUrlCreateDetail(clinicHistoryId: any) {
+    return (
+      '/' + getUrl(CLINIC_HISTORY_ROUTES.DETAIL_CREATE, { clinicHistoryId })
+    );
   }
 
   getUrlEditDetail(clinicHistoryDetailId: any) {

@@ -46,10 +46,16 @@ export class PetCreateComponent implements OnInit {
 
     this.http
       .get<ResponseType<{ users: User[] }>>(getApiUrl(USER_URL))
-      .subscribe((response) => {
-        this.userList =
-          response.body?.users?.filter((user) => !!user.status) || [];
-        this.skeleton = false;
+      .subscribe({
+        next: (response) => {
+          this.userList =
+            response.body?.users?.filter((user) => !!user.status) || [];
+          this.skeleton = false;
+        },
+        error: ({ error }) => {
+          this.toast.showErrorResponse(error);
+          this.skeleton = false;
+        },
       });
   }
 

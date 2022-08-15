@@ -3,8 +3,23 @@
 
   <h2>Historia clínica</h2>
 
+  <div class="flex flex-col">
+    <span>Fecha de creación: {{ parseDate(clinicHistory.createdAt) }}</span>
+
+    <span>
+      Mascota:
+
+      <a [routerLink]="getUrlEditPet(clinicHistory.petId)">
+        {{ clinicHistory.pet?.name }}
+      </a>
+    </span>
+  </div>
+
   <div class="flex flex-col mb-4">
-    <button class="self-end success" [routerLink]="clinicHistoryDetailCreate">
+    <button
+      class="self-end success"
+      [routerLink]="getUrlCreateDetail(clinicHistory.id)"
+    >
       Crear detalle
     </button>
   </div>
@@ -15,7 +30,8 @@
         <th>Fecha</th>
         <th>Alimentación</th>
         <th>Hábitat</th>
-        <th>Ritmo cardiaco</th>
+        <th>Frecuencia cardiaca</th>
+        <th>Frecuencia respiratoria</th>
         <th>Temperatura</th>
         <th>Peso</th>
         <th>Colaborador</th>
@@ -25,10 +41,11 @@
 
     <tbody *ngIf="clinicHistoryDetailList.length > 0; else emptyList">
       <tr *ngFor="let detail of clinicHistoryDetailList">
-        <td>{{ detail.dateTime }}</td>
+        <td>{{ parseDate(detail.dateTime) }}</td>
         <td>{{ detail.feeding }}</td>
         <td>{{ detail.habitat }}</td>
         <td>{{ detail.heartRate }}</td>
+        <td>{{ detail.breathingRate }}</td>
         <td>{{ detail.temperature }}</td>
         <td>{{ detail.weight }}</td>
         <td>
@@ -38,7 +55,7 @@
         </td>
         <td class="text-center">
           <button
-            class="info mx-2"
+            class="info m-2"
             [routerLink]="getUrlEditDetail(detail.id)"
             [disabled]="loading"
           >
@@ -46,7 +63,7 @@
           </button>
 
           <button
-            class="error mx-2"
+            class="error m-2"
             (click)="onDeleteDetail(detail.id)"
             [disabled]="loading"
           >
@@ -59,7 +76,7 @@
     <ng-template #emptyList>
       <tbody>
         <tr>
-          <td colspan="6" class="text-center">No hay detalles registrados</td>
+          <td colspan="9" class="text-center">No hay detalles registrados</td>
         </tr>
       </tbody>
     </ng-template>
