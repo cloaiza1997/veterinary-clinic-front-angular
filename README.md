@@ -1,4 +1,28 @@
-# VeterinaryClinicFrontAngular
+# veterinary-clinic-front-angular
+
+Frontend para la gestión de historias clínicas de una veterinaria, hace uso del API [veterinay-clinic-backend-spring](https://github.com/cloaiza1997/veterinay-clinic-backend-spring).
+
+Desarrollado por [Cristian Loaiza](https://cloaiza1997.github.io/CristianLoaiza/).
+
+---
+
+## Demo
+
+()[]
+
+---
+
+## Tecnologías utilizadas
+
+- Angular
+
+## Librerías
+
+- Tailwind CSS
+- Moment
+- Angular Popup
+
+---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
 

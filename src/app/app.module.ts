@@ -10,6 +10,7 @@ import { BackButtonDirective } from './directives/back-button.directive';
 import { ClinicHistoryDetailComponent } from './apps/clinic-history/pages/clinic-history-detail/clinic-history-detail.component';
 import { ClinicHistoryDetailCreateComponent } from './apps/clinic-history/pages/clinic-history-detail-create/clinic-history-detail-create.component';
 import { ClinicHistoryDetailEditComponent } from './apps/clinic-history/pages/clinic-history-detail-edit/clinic-history-detail-edit.component';
+import { HomeComponent } from './apps/home/home.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PetCreateComponent } from './apps/pets/pages/pet-create/pet-create.component';
@@ -30,6 +31,7 @@ import { WorkerListComponent } from './apps/worker/pages/worker-list/worker-list
     ClinicHistoryDetailComponent,
     ClinicHistoryDetailCreateComponent,
     ClinicHistoryDetailEditComponent,
+    HomeComponent,
     LoaderComponent,
     NavigationComponent,
     PetCreateComponent,
