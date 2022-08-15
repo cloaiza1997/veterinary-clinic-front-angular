@@ -1,6 +1,7 @@
 import { DocType } from '../types/types';
 
-export const URL_API = 'http://192.168.0.44:8080/api/veterinary_clinic/';
+// export const URL_API = 'http://192.168.0.44:8080/api/veterinary_clinic/'; // Local
+export const URL_API = 'http://44.201.226.225:8080/api/veterinary_clinic/'; // AWS
 
 export const DOCUMENT_TYPES: { value: DocType; label: string }[] = [
   {
