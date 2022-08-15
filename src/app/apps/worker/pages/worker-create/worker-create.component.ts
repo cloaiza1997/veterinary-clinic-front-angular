@@ -41,9 +41,9 @@ export class WorkerCreateComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.toast.showSuccess(response.message);
-          this.router.navigateByUrl(WORKER_ROUTES.HOME);
-
           this.loading = false;
+
+          this.router.navigateByUrl(WORKER_ROUTES.HOME);
         },
         error: ({ error }: { error: ResponseType<any> }) => {
           this.toast.showErrorResponse(error);

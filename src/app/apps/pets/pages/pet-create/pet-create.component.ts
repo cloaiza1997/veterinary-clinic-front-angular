@@ -1,3 +1,5 @@
+import { CLINIC_HISTORY_URL } from 'src/app/apps/clinic-history/constants/clinic-history.constants';
+import { ClinicHistory } from 'src/app/apps/clinic-history/models/clinic-history';
 import { Component, OnInit } from '@angular/core';
 import { GENDER_PET_TYPES } from 'src/app/utils/constants';
 import { getApiUrl } from 'src/app/utils/utils';
@@ -9,8 +11,6 @@ import { Router } from '@angular/router';
 import { ToastController } from 'src/app/helpers/toast-controller';
 import { User } from 'src/app/apps/user/models/user';
 import { USER_URL } from 'src/app/apps/user/constants/user.constants';
-import { CLINIC_HISTORY_URL } from 'src/app/apps/clinic-history/constants/clinic-history.constants';
-import { ClinicHistory } from 'src/app/apps/clinic-history/models/clinic-history';
 
 /**
  * Formulario de creación de mascotas
@@ -82,9 +82,7 @@ export class PetCreateComponent implements OnInit {
   onCreateClinicHistory(petId: any, message: string) {
     this.loading = true;
 
-    const clinicHistory = new ClinicHistory({
-      petId,
-    });
+    const clinicHistory = new ClinicHistory({ petId });
 
     this.http
       .post<ResponseType<any>>(getApiUrl(CLINIC_HISTORY_URL), clinicHistory)

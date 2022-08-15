@@ -75,12 +75,14 @@ export class PetListComponent implements OnInit {
     const { clinicHistoryId } =
       this.petList.find((pet) => pet.id === petId) || {};
 
+    // Elimina historia clínica
     this.http
       .delete<ResponseType<any>>(
         getApiUrl(CLINIC_HISTORY_URL, { clinicHistoryId })
       )
       .subscribe({
         next: (responseClinicHistory) => {
+          // Elimina mascota
           this.http
             .delete<ResponseType<any>>(getApiUrl(PET_URL, { petId }))
             .subscribe({

@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CLINIC_HISTORY_DETAIL_URL } from '../../constants/clinic-history.constants';
 import { ClinicHistoryDetail } from '../../models/clinic-history-detail';
 import { Component, OnInit } from '@angular/core';
@@ -6,6 +6,7 @@ import { forkJoin } from 'rxjs';
 import { getApiUrl } from 'src/app/utils/utils';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
+import { PET_ROUTES } from 'src/app/apps/pets/constants/pet.constants';
 import { ResponseType } from 'src/app/types/types';
 import { ToastController } from 'src/app/helpers/toast-controller';
 import { Worker } from 'src/app/apps/worker/models/worker';
@@ -28,9 +29,10 @@ export class ClinicHistoryDetailEditComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private toast: ToastController,
+    private location: Location,
     private route: ActivatedRoute,
-    private location: Location
+    private router: Router,
+    private toast: ToastController
   ) {
     this.clinicHistoryDetail = new ClinicHistoryDetail();
   }
@@ -61,6 +63,8 @@ export class ClinicHistoryDetailEditComponent implements OnInit {
       error: ({ error }) => {
         this.toast.showErrorResponse(error);
         this.skeleton = false;
+
+        this.router.navigateByUrl(PET_ROUTES.HOME);
       },
     });
   }

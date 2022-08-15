@@ -69,14 +69,10 @@ export class UserEditComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          if (response.status) {
-            this.toast.showSuccess(response.message);
-            this.router.navigateByUrl(USER_ROUTES.HOME);
-          } else {
-            this.toast.showErrorResponse(response);
-          }
-
+          this.toast.showSuccess(response.message);
           this.loading = false;
+
+          this.router.navigateByUrl(USER_ROUTES.HOME);
         },
         error: ({ error }: { error: ResponseType<any> }) => {
           this.toast.showErrorResponse(error);
