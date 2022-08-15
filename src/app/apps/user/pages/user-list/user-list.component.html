@@ -26,7 +26,11 @@
         <td>{{ user.firstName }} {{ user.lastName }}</td>
         <td class="text-center">{{ user.gender }}</td>
         <td class="text-center">{{ user.status ? "Activo" : "Inactivo" }}</td>
-        <td class="text-center">
+        <td class="text-center relative">
+          <div *ngIf="loading" class="absolute top-0 left-0 w-full h-full">
+            <app-loader [size]="30"></app-loader>
+          </div>
+
           <button
             class="info mx-2"
             [routerLink]="getUrlEditUser(user.id)"

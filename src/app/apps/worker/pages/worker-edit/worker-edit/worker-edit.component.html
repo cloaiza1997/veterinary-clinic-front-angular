@@ -3,68 +3,84 @@
 
   <h2>Actualizar colaborador</h2>
 
-  <form (ngSubmit)="onUpdateWorker()" [noValidate]="false">
-    <div class="input-field">
-      <label>
-        Tipo de documento
+  <app-loader *ngIf="skeleton; else skeletonFinish" [size]="50"></app-loader>
 
-        <select name="documentType" [(ngModel)]="worker.documentType" required>
-          <option *ngFor="let type of documentTypes" value="{{ type.value }}">
-            {{ type.label }}
-          </option>
-        </select>
-      </label>
-    </div>
+  <ng-template #skeletonFinish>
+    <form (ngSubmit)="onUpdateWorker()" [noValidate]="false">
+      <div class="input-field">
+        <label>
+          Tipo de documento
 
-    <div class="input-field">
-      <label>
-        Número de documento
+          <select
+            name="documentType"
+            [(ngModel)]="worker.documentType"
+            required
+          >
+            <option *ngFor="let type of documentTypes" value="{{ type.value }}">
+              {{ type.label }}
+            </option>
+          </select>
+        </label>
+      </div>
 
-        <input
-          type="number"
-          name="documentNumber"
-          [(ngModel)]="worker.documentNumber"
-          required
-        />
-      </label>
-    </div>
+      <div class="input-field">
+        <label>
+          Número de documento
 
-    <div class="input-field">
-      <label>
-        Nombre
+          <input
+            type="number"
+            name="documentNumber"
+            [(ngModel)]="worker.documentNumber"
+            required
+          />
+        </label>
+      </div>
 
-        <input name="firstName" [(ngModel)]="worker.firstName" required />
-      </label>
-    </div>
+      <div class="input-field">
+        <label>
+          Nombre
 
-    <div class="input-field">
-      <label>
-        Apellido
+          <input name="firstName" [(ngModel)]="worker.firstName" required />
+        </label>
+      </div>
 
-        <input name="lastName" [(ngModel)]="worker.lastName" required />
-      </label>
-    </div>
+      <div class="input-field">
+        <label>
+          Apellido
 
-    <div class="input-field">
-      <label>
-        Cargo
+          <input name="lastName" [(ngModel)]="worker.lastName" required />
+        </label>
+      </div>
 
-        <input name="positionName" [(ngModel)]="worker.positionName" required />
-      </label>
-    </div>
+      <div class="input-field">
+        <label>
+          Cargo
 
-    <div class="input-field">
-      <label>
-        Especialidad
+          <input
+            name="positionName"
+            [(ngModel)]="worker.positionName"
+            required
+          />
+        </label>
+      </div>
 
-        <input name="speciality" [(ngModel)]="worker.speciality" required />
-      </label>
-    </div>
+      <div class="input-field">
+        <label>
+          Especialidad
 
-    <div class="flex items-center justify-center py-4">
-      <button type="submit" class="success" [disabled]="loading">
-        Actualizar
-      </button>
-    </div>
-  </form>
+          <input name="speciality" [(ngModel)]="worker.speciality" required />
+        </label>
+      </div>
+
+      <div class="flex items-center justify-center py-4">
+        <button type="submit" class="success relative" [disabled]="loading">
+          Actualizar
+
+          <div *ngIf="loading" class="absolute top-0 left-0 w-full h-full">
+            <app-loader [size]="30"></app-loader>
+          </div>
+        </button>
+      </div>
+    </form>
+  </ng-template>
 </div>

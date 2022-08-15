@@ -19,6 +19,7 @@ import { WORKER_ROUTES, WORKER_URL } from '../../../constants/worker.constants';
 export class WorkerEditComponent implements OnInit {
   documentTypes = DOCUMENT_TYPES;
 
+  skeleton = true;
   loading = false;
 
   worker: Worker;
@@ -39,21 +40,21 @@ export class WorkerEditComponent implements OnInit {
   }
 
   getWorker(workerId: any) {
+    this.skeleton = true;
+
     this.http
       .get<ResponseType<{ worker: Worker }>>(
         getApiUrl(WORKER_URL, { workerId })
       )
       .subscribe({
         next: (response) => {
-          if (response.status) {
-            this.worker = new Worker(response.body?.worker);
-          } else {
-            this.toast.showErrorResponse(response);
-            this.router.navigateByUrl(WORKER_ROUTES.HOME);
-          }
+          this.worker = new Worker(response.body?.worker);
+          this.skeleton = false;
         },
         error: ({ error }) => {
           this.toast.showErrorResponse(error);
+          this.skeleton = false;
+
           this.router.navigateByUrl(WORKER_ROUTES.HOME);
         },
       });

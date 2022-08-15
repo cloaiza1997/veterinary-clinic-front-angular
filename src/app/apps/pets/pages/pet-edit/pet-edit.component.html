@@ -3,63 +3,71 @@
 
   <h2>Editar mascota</h2>
 
-  <form (ngSubmit)="onUpdatePet()" [noValidate]="false">
-    <div class="input-field">
-      <label>
-        Nombre
+  <app-loader *ngIf="skeleton; else skeletonFinish" [size]="50"></app-loader>
 
-        <input name="name" [(ngModel)]="pet.name" required />
-      </label>
-    </div>
+  <ng-template #skeletonFinish>
+    <form (ngSubmit)="onUpdatePet()" [noValidate]="false">
+      <div class="input-field">
+        <label>
+          Nombre
 
-    <div class="input-field">
-      <label>
-        Raza
+          <input name="name" [(ngModel)]="pet.name" required />
+        </label>
+      </div>
 
-        <input name="breed" [(ngModel)]="pet.breed" required />
-      </label>
-    </div>
+      <div class="input-field">
+        <label>
+          Raza
 
-    <div class="input-field radio">
-      <span>
-        Género
+          <input name="breed" [(ngModel)]="pet.breed" required />
+        </label>
+      </div>
 
-        <div class="flex flex-row">
-          <label *ngFor="let gender of genderTypes">
-            <input
-              type="radio"
-              name="gender"
-              value="{{ gender.value }}"
-              [(ngModel)]="pet.gender"
-              required
-            />
+      <div class="input-field radio">
+        <span>
+          Género
 
-            {{ gender.label }}
-          </label>
-        </div>
-      </span>
-    </div>
+          <div class="flex flex-row">
+            <label *ngFor="let gender of genderTypes">
+              <input
+                type="radio"
+                name="gender"
+                value="{{ gender.value }}"
+                [(ngModel)]="pet.gender"
+                required
+              />
 
-    <div class="input-field">
-      <label>
-        Usuario
+              {{ gender.label }}
+            </label>
+          </div>
+        </span>
+      </div>
 
-        <select name="documentType" [(ngModel)]="pet.userId" required>
-          <option *ngIf="userList.length === 0" disabled>
-            No hay usuarios registrados
-          </option>
+      <div class="input-field">
+        <label>
+          Usuario
 
-          <option *ngFor="let user of userList" value="{{ user.id }}">
-            {{ user.firstName }} {{ user.lastName }}
-          </option>
-        </select>
-      </label>
-    </div>
+          <select name="documentType" [(ngModel)]="pet.userId" required>
+            <option *ngIf="userList.length === 0" disabled>
+              No hay usuarios registrados
+            </option>
 
-    <div class="flex items-center justify-center py-4">
-      <button type="submit" class="success" [disabled]="loading">
-        Actualizar
-      </button>
-    </div>
-  </form>
+            <option *ngFor="let user of userList" value="{{ user.id }}">
+              {{ user.firstName }} {{ user.lastName }}
+            </option>
+          </select>
+        </label>
+      </div>
+
+      <div class="flex items-center justify-center py-4">
+        <button type="submit" class="success relative" [disabled]="loading">
+          Actualizar
+
+          <div *ngIf="loading" class="absolute top-0 left-0 w-full h-full">
+            <app-loader [size]="30"></app-loader>
+          </div>
+        </button>
+      </div>
+    </form>
+  </ng-template>
 </div>

@@ -62,8 +62,12 @@
     </div>
 
     <div class="flex items-center justify-center py-4">
-      <button type="submit" class="success" [disabled]="loading">
+      <button type="submit" class="success relative" [disabled]="loading">
         Guardar
+
+        <div *ngIf="loading" class="absolute top-0 left-0 w-full h-full">
+          <app-loader [size]="30"></app-loader>
+        </div>
       </button>
     </div>
   </form>
