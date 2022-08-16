@@ -10,6 +10,8 @@ Desarrollado por [Cristian Loaiza](https://cloaiza1997.github.io/CristianLoaiza/
 
 [https://veterinary-clinic-front-angular.vercel.app/](https://veterinary-clinic-front-angular.vercel.app/)
 
+![home](https://user-images.githubusercontent.com/36653567/184880251-e75a13e9-fdca-4321-8c2a-ef1c2d7c8a1f.png)
+
 ---
 
 ## Tecnologías utilizadas
